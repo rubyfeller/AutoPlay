@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AutoPlay</string>
+    <string name="Play">songText</string>
+    <string name="songText">Burning daylight</string>
+    <string name="skipPrevious">TODO</string>
+    <string name="skipNext">TODO</string>
+    <string name="settingsButton">TODO</string>
 </resources>
