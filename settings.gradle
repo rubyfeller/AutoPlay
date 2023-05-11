@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AutoPlay"
 include ':app'
+include ':spotify-app-remote'
+project(':spotify-app-remote').projectDir = new File('app/libs/spotify-app-remote-release-0.7.2.aar')
