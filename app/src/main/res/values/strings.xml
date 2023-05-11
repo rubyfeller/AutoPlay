@@ -5,4 +5,5 @@
     <string name="skipPrevious">TODO</string>
     <string name="skipNext">TODO</string>
     <string name="settingsButton">TODO</string>
+    <string name="infoText">Choose your playlist\n</string>
 </resources>
