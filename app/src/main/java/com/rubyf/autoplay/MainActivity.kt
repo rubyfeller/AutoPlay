@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.rometools.rome.io.SyndFeedInput
@@ -12,11 +13,13 @@ import com.rometools.rome.io.XmlReader
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
+import com.spotify.protocol.types.Track
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -97,13 +100,16 @@ class MainActivity : AppCompatActivity() {
     private fun connected() {
         spotifyAppRemote?.let {
             // Play a playlist
-//            val playlistUri = "spotify:playlist:37i9dQZEVXbK4BFAukDzj3"
-//            it.playerApi.play(playlistUri)
+            val playlistUri = intent.getStringExtra("playlist_uri")
+            it.playerApi.play(playlistUri)
             // Subscribe to PlayerState
-//            it.playerApi.subscribeToPlayerState().setEventCallback { playerState ->
-//                val track: Track = playerState.track
-//                Log.d("MainActivity", track.name + " by " + track.artist.name)
-//            }
+            it.playerApi.subscribeToPlayerState().setEventCallback { playerState ->
+                val track: Track = playerState.track
+                Log.d("MainActivity", track.name + " by " + track.artist.name)
+                val songText = findViewById<TextView>(R.id.songText)
+                songText.text = track.name
+
+            }
 
             val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 50, 0)
