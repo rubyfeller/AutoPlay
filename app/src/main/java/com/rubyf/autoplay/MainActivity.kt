@@ -1,6 +1,5 @@
 package com.rubyf.autoplay
 
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +14,6 @@ import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.protocol.types.Track
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
@@ -26,23 +24,26 @@ class MainActivity : AppCompatActivity() {
     private val clientId = "02c259bc614941c4beea5e1e06d826ff"
     private val redirectUri = "http://localhost"
     private var spotifyAppRemote: SpotifyAppRemote? = null
-    private var isPlaying = false
+    private var isPlaying = true
+    var driveMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        playAudio()
+        playNews()
     }
 
-    private fun playAudio() {
+    private fun playNews() {
         lifecycleScope.launch {
-            delay(60000) // simple delay of 1 minute for the time being.. will be changed to hourly bulletin play
             try {
                 val mp3Url = withContext(Dispatchers.IO) { getMp3UrlFromXml() }
                 val mediaPlayer = MediaPlayer()
                 mediaPlayer.setDataSource(mp3Url)
                 mediaPlayer.prepare()
                 mediaPlayer.start()
+                val songText = findViewById<TextView>(R.id.songText)
+                songText.text = resources.getString(R.string.anpNews)
+
                 if (isPlaying) {
                     spotifyAppRemote?.playerApi?.pause()
                 }
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                 mediaPlayer.setOnCompletionListener {
                     mediaPlayer.release()
                     spotifyAppRemote?.playerApi?.resume()
+                    isPlaying = true
                 }
             } catch (e: Exception) {
                 Log.e("playAudio_catch", e.message, e)
@@ -92,61 +94,71 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onFailure(throwable: Throwable) {
                     Log.e("MainActivity", throwable.message, throwable)
-                    // Something went wrong when attempting to connect! Handle errors here
                 }
             })
     }
 
     private fun connected() {
         spotifyAppRemote?.let {
-            // Play a playlist
-            val playlistUri = intent.getStringExtra("playlist_uri")
-            it.playerApi.play(playlistUri)
-            // Subscribe to PlayerState
-            it.playerApi.subscribeToPlayerState().setEventCallback { playerState ->
-                val track: Track = playerState.track
-                Log.d("MainActivity", track.name + " by " + track.artist.name)
-                val songText = findViewById<TextView>(R.id.songText)
-                songText.text = track.name
+            playPlaylist(it)
+            subscribeToPlayerState(it)
+            setSkipPreviousClickListener(it)
+            setPauseClickListener()
+            setSkipNextClickListener(it)
+        }
+    }
+    private fun playPlaylist(spotifyAppRemote: SpotifyAppRemote) {
+        val playlistUri = intent.getStringExtra("playlist_uri")
+        spotifyAppRemote.playerApi.play(playlistUri)
+    }
 
-            }
-
-            val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 50, 0)
-
-            val skipPreviousImageView = findViewById<ImageView>(R.id.skipPrevious)
-            val play = findViewById<ImageView>(R.id.Play)
-            val skipNext = findViewById<ImageView>(R.id.skipNext)
-
-            skipPreviousImageView.setOnClickListener {
-                spotifyAppRemote?.playerApi?.skipPrevious()
-            }
-
-            play.setOnClickListener {
-                if (isPlaying) {
-                    // Pause the music
-                    spotifyAppRemote?.playerApi?.pause()
-                    play.setImageResource(R.drawable.play_arrow_black_24dp)
-                } else {
-                    // Play the music
-                    spotifyAppRemote?.playerApi?.resume()
-                    play.setImageResource(R.drawable.pause_48px)
-                }
-                isPlaying = !isPlaying
-            }
-
-            skipNext.setOnClickListener {
-                spotifyAppRemote?.playerApi?.skipNext()
-            }
+    private fun subscribeToPlayerState(spotifyAppRemote: SpotifyAppRemote) {
+        spotifyAppRemote.playerApi.subscribeToPlayerState().setEventCallback { playerState ->
+            val track: Track = playerState.track
+            Log.d("MainActivity", track.name + " by " + track.artist.name)
+            val songText = findViewById<TextView>(R.id.songText)
+            songText.text = track.name
         }
     }
 
+    private fun setSkipPreviousClickListener(spotifyAppRemote: SpotifyAppRemote) {
+        val skipPrevious = findViewById<ImageView>(R.id.skipPrevious)
+        skipPrevious.setOnClickListener {
+            spotifyAppRemote.playerApi.skipPrevious()
+            val pause = findViewById<ImageView>(R.id.Pause)
+            pause.setImageResource(R.drawable.pause_48px)
+        }
+    }
+
+    private fun setPauseClickListener() {
+        var isPlaying = true
+        val pause = findViewById<ImageView>(R.id.Pause)
+        pause.setOnClickListener {
+            if (isPlaying) {
+                spotifyAppRemote?.playerApi?.pause()
+                pause.setImageResource(R.drawable.play_arrow_black_24dp)
+            } else {
+                spotifyAppRemote?.playerApi?.resume()
+                pause.setImageResource(R.drawable.pause_48px)
+            }
+            isPlaying = !isPlaying
+        }
+    }
+
+    private fun setSkipNextClickListener(spotifyAppRemote: SpotifyAppRemote) {
+        val skipNext = findViewById<ImageView>(R.id.skipNext)
+        skipNext.setOnClickListener {
+            spotifyAppRemote.playerApi.skipNext()
+            val pause = findViewById<ImageView>(R.id.Pause)
+            pause.setImageResource(R.drawable.pause_48px)
+        }
+    }
     override fun onStop() {
         super.onStop()
         spotifyAppRemote?.let {
             it.playerApi.pause()
             isPlaying = false
-            val playButton = findViewById<ImageView>(R.id.Play)
+            val playButton = findViewById<ImageView>(R.id.Pause)
             playButton.setImageResource(R.drawable.play_arrow_black_24dp)
         }
     }
