@@ -25,6 +25,23 @@ class OnboardingActivity : AppCompatActivity() {
 
         fun startOnboarding(view: View) {
 
+            val connectionParams = ConnectionParams.Builder(clientId)
+                .setRedirectUri(redirectUri)
+                .showAuthView(true)
+                .build()
+
+            SpotifyAppRemote.connect(this, connectionParams,
+                object : Connector.ConnectionListener {
+                    override fun onConnected(spotifyAppRemote: SpotifyAppRemote) {
+                        this@OnboardingActivity.spotifyAppRemote = spotifyAppRemote
+                        Log.d("MainActivity", "Connected! Yay!")
+                    }
+
+                    override fun onFailure(throwable: Throwable) {
+                        Log.e("MainActivity", throwable.message, throwable)
+                        // Something went wrong when attempting to connect! Handle errors here
+                    }
+                })
 //            val pm: PackageManager = getPackageManager()
 //            val result = isPackageInstalled("com.spotify.music", pm)
 //
