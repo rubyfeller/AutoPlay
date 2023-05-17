@@ -5,5 +5,11 @@
     <string name="skipPrevious">TODO</string>
     <string name="skipNext">TODO</string>
     <string name="settingsButton">TODO</string>
-    <string name="infoText">Choose your playlist\n</string>
+    <string name="infoText">Choose your playlist</string>
+    <string name="spotify_not_installed">Spotify is not installed yet</string>
+    <string name="onboardTitle">Welkom bij AutoPlay</string>
+    <string name="onboardSubTitle">Dé veiligste muziekplayer voor in de auto</string>
+    <string name="nextButtonText">Klik hier om te starten</string>
+    <string name="spotify_not_found">Spotify is niet gevonden op je apparaat</string>
+    <string name="spotify_not_found_subTitle">Om AutoPlay te kunnen gebruiken dien je deze app te installeren, dit kan via de knop hieronder</string>
 </resources>

@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "com.google.code.gson:gson:2.6.1"
-    implementation files('C:\\Users\\rubyf\\Documents\\autoplay-frontend\\app\\libs\\spotify-app-remote-release-0.7.2.aar')
+    implementation files('C:\\Users\\Dennis Kuijs\\Desktop\\autoplay-frontend2\\app\\libs\\spotify-app-remote-release-0.7.2.aar')
     implementation 'com.rometools:rome:1.15.0'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
     testImplementation 'junit:junit:4.13.2'

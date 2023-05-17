@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="horizontal"
     android:background="#202124">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center">
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/playlist1"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_corner"
-            android:clipToOutline="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.106"
@@ -36,12 +39,12 @@
             android:id="@+id/playlist2"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_corner"
-            android:clipToOutline="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.499"
@@ -54,12 +57,12 @@
             android:id="@+id/playlist3"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_corner"
-            android:clipToOutline="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.898"
@@ -68,24 +71,16 @@
             app:layout_constraintVertical_bias="0.436"
             app:srcCompat="@drawable/hits_top_50" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center|bottom">
-
         <ImageView
             android:id="@+id/playlist4"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_corner"
-            android:clipToOutline="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.499"
@@ -98,12 +93,30 @@
             android:id="@+id/playlist5"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_corner"
-            android:clipToOutline="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.835"
+            app:srcCompat="@drawable/fresh_pop" />
+
+        <ImageView
+            android:id="@+id/playlist6"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.499"
@@ -113,15 +126,15 @@
             app:srcCompat="@drawable/weekend" />
 
         <ImageView
-            android:id="@+id/playlist6"
+            android:id="@+id/playlist7"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_corner"
-            android:clipToOutline="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.499"
@@ -130,22 +143,22 @@
             app:layout_constraintVertical_bias="0.835"
             app:srcCompat="@drawable/dance_hits" />
 
-    </LinearLayout>
+    </GridLayout>
 
     <TextView
         android:id="@+id/infoText"
         android:layout_width="300dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:background="@drawable/rounded_corner"
         android:gravity="center"
         android:text="@string/infoText"
         android:textColor="#FFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.082" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,8 +55,8 @@
 
         <TextView
             android:id="@+id/songText"
-            android:layout_width="138dp"
-            android:layout_height="46dp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:background="@drawable/rounded_corner"
             android:gravity="center"
             android:text="@string/songText"
