@@ -1,23 +1,16 @@
 package com.rubyf.autoplay
 
+import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.spotify.android.appremote.api.ConnectionParams
-import com.spotify.android.appremote.api.Connector
-import com.spotify.android.appremote.api.SpotifyAppRemote
+import com.google.firebase.messaging.FirebaseMessaging
 
 class OnboardingActivity : AppCompatActivity() {
-
-    private val clientId = "02c259bc614941c4beea5e1e06d826ff"
-    private val redirectUri = "http://localhost"
-    private var spotifyAppRemote: SpotifyAppRemote? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,38 +18,32 @@ class OnboardingActivity : AppCompatActivity() {
 
         fun startOnboarding(view: View) {
 
-            val connectionParams = ConnectionParams.Builder(clientId)
-                .setRedirectUri(redirectUri)
-                .showAuthView(true)
-                .build()
+            val pm: PackageManager = getPackageManager()
+            val result = isPackageInstalled("com.spotify.music", pm)
 
-            SpotifyAppRemote.connect(this, connectionParams,
-                object : Connector.ConnectionListener {
-                    override fun onConnected(spotifyAppRemote: SpotifyAppRemote) {
-                        this@OnboardingActivity.spotifyAppRemote = spotifyAppRemote
-                        Log.d("MainActivity", "Connected! Yay!")
-                    }
-
-                    override fun onFailure(throwable: Throwable) {
-                        Log.e("MainActivity", throwable.message, throwable)
-                        // Something went wrong when attempting to connect! Handle errors here
-                    }
-                })
-//            val pm: PackageManager = getPackageManager()
-//            val result = isPackageInstalled("com.spotify.music", pm)
-//
-//            if (!result) {
-//                val intent = Intent(this, SpotifyNotInstalled::class.java)
-//                startActivity(intent)
-//            }
-//            else {
-//                val intent2 = Intent(this, MainActivity::class.java)
-//                startActivity(intent2)
-//            }
+            if (!result) {
+                val intent = Intent(this, SpotifyNotInstalled::class.java)
+                startActivity(intent)
+            }
+            else {
+                SpotifyControllerService.connect(this) {
+                    val intent2 = Intent(this, PlaylistActivity::class.java)
+                    startActivity(intent2)
+                }
+            }
         }
 
         val startButton = findViewById<AppCompatButton>(R.id.startOnboarding)
         startButton.setOnClickListener(::startOnboarding)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Log.d(ContentValues.TAG, "FCM token: $token")
+            } else {
+                Log.e(ContentValues.TAG, "Failed to get FCM token", task.exception)
+            }
+        }
     }
 
     private fun isPackageInstalled(packageName: String, packageManager: PackageManager): Boolean {

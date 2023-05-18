@@ -1,13 +1,9 @@
 package com.rubyf.autoplay
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.messaging.FirebaseMessaging
-
 
 class PlaylistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,15 +29,6 @@ class PlaylistActivity : AppCompatActivity() {
         val playlist6 = findViewById<ImageView>(R.id.playlist6)
         val playlist6Uri = "spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO"
         setPlaylistOnClickListener(playlist6, playlist6Uri)
-
-        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val token = task.result
-                Log.d(ContentValues.TAG, "FCM token: $token")
-            } else {
-                Log.e(ContentValues.TAG, "Failed to get FCM token", task.exception)
-            }
-        }
     }
     private fun setPlaylistOnClickListener(playlistImageView: ImageView, playlistUri: String) {
         playlistImageView.setOnClickListener {
