@@ -67,4 +67,17 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:srcCompat="@drawable/googleplayicon" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/continueAfterInstall"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/continueAfterInstallText"
+        android:background="@drawable/rounded_corner_with_color"
+        android:textColor="#FFFF"
+        android:onClick="continueAfterInstall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    </androidx.appcompat.widget.AppCompatButton>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

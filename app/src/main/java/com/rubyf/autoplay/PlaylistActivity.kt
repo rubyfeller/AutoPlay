@@ -11,7 +11,7 @@ class PlaylistActivity : AppCompatActivity() {
         setContentView(R.layout.activity_playlist)
 
         val playlist2 = findViewById<ImageView>(R.id.playlist2)
-        val playlist2Uri = "spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO"
+        val playlist2Uri = "spotify:playlist:37i9dQZF1DWZ7eJRBxKzdO"
         setPlaylistOnClickListener(playlist2, playlist2Uri)
 
         val playlist3 = findViewById<ImageView>(R.id.playlist3)
@@ -23,12 +23,16 @@ class PlaylistActivity : AppCompatActivity() {
         setPlaylistOnClickListener(playlist4, playlist4Uri)
 
         val playlist5 = findViewById<ImageView>(R.id.playlist5)
-        val playlist5Uri = "spotify:playlist:37i9dQZF1DX7CfwQr5vk7g"
+        val playlist5Uri = "spotify:playlist:37i9dQZF1DX2fMaj5GfMh3"
         setPlaylistOnClickListener(playlist5, playlist5Uri)
 
         val playlist6 = findViewById<ImageView>(R.id.playlist6)
-        val playlist6Uri = "spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO"
+        val playlist6Uri = "spotify:playlist:37i9dQZF1DX7CfwQr5vk7g"
         setPlaylistOnClickListener(playlist6, playlist6Uri)
+
+        val playlist7 = findViewById<ImageView>(R.id.playlist7)
+        val playlist7Uri = "spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO"
+        setPlaylistOnClickListener(playlist7, playlist7Uri)
     }
     private fun setPlaylistOnClickListener(playlistImageView: ImageView, playlistUri: String) {
         playlistImageView.setOnClickListener {
