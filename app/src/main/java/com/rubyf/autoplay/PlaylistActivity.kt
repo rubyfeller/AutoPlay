@@ -33,6 +33,10 @@ class PlaylistActivity : AppCompatActivity() {
         val playlist7 = findViewById<ImageView>(R.id.playlist7)
         val playlist7Uri = "spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO"
         setPlaylistOnClickListener(playlist7, playlist7Uri)
+
+        val playlist8 = findViewById<ImageView>(R.id.playlist8)
+        val playlist8Uri = "spotify:playlist:37i9dQZF1DWWrJKwf0q9nn"
+        setPlaylistOnClickListener(playlist8, playlist8Uri)
     }
     private fun setPlaylistOnClickListener(playlistImageView: ImageView, playlistUri: String) {
         playlistImageView.setOnClickListener {

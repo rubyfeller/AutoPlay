@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.rubyf.autoplay.SpotifyControllerService.resume
 
-
 class MainActivity : AppCompatActivity() {
     private var appInBackground = false
     var driveMode = false

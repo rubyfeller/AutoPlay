@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-
 class PlayAudio() {
     private var mediaPlayer: MediaPlayer? = null
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
@@ -23,6 +22,7 @@ class PlayAudio() {
             SpotifyControllerService.pause()
             mediaPlayer!!.start()
             mediaPlayer?.setOnCompletionListener {
+                mediaPlayer!!.release()
                 SpotifyControllerService.resume()
             }
         }
