@@ -12,7 +12,6 @@
     <string name="nextButtonText">Klik hier om te starten</string>
     <string name="spotify_not_found">Spotify is niet gevonden op je apparaat</string>
     <string name="spotify_not_found_subTitle">Om AutoPlay te kunnen gebruiken dien je deze app te installeren, dit kan via de knop hieronder</string>
-    <string name="anpNews">ANP News\n</string>
-    <string name="playlist_text">Kies een playlist</string>
-    <string name="choose_number">Kies een nummer....</string>
+    <string name="continueAfterInstallText">Geïnstalleerd? Ga verder!</string>
+    <string name="anpNews">ANP News</string>
 </resources>

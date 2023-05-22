@@ -20,11 +20,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val resourceId = R.raw.severe_weather
             playAudio.playAudio(this, resourceId)
         }
-        if (notificationTitle == "driving") {
-            Log.d("Firebase messaging", "Notification (driving) received: $message")
-        }
         if (notificationTitle == "play_news") {
             Log.d("Firebase messaging", "Notification (play_news) received: $message")
+            playAudio.playNews()
         }
     }
 }
