@@ -8,6 +8,7 @@
     android:background="#202124">
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="4"
@@ -105,7 +106,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.835"
-            app:srcCompat="@drawable/fresh_pop" />
+            app:srcCompat="@drawable/summer_house" />
 
         <ImageView
             android:id="@+id/playlist6"
@@ -143,22 +144,54 @@
             app:layout_constraintVertical_bias="0.835"
             app:srcCompat="@drawable/dance_hits" />
 
+        <ImageView
+            android:id="@+id/playlist8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:clipToOutline="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.835"
+            app:srcCompat="@drawable/hot_new_dance" />
+
     </GridLayout>
 
     <TextView
-        android:id="@+id/infoText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rounded_corner"
+        android:id="@+id/playListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/infoText"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/playlist_text"
         android:textColor="#FFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/playListSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Deze playlist staat in verbinding met Spotify"
+        android:textColor="#FFFF"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playListTitle"
+        app:layout_constraintVertical_bias="0.228" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
