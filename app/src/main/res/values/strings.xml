@@ -16,4 +16,5 @@
     <string name="anpNews">ANP News</string>
     <string name="playlist_text">Kies een playlist</string>
     <string name="choose_number">Kies een nummer...\n</string>
+    <string name="playlist_subtitle">Deze playlist staat in verbinding met Spotify</string>
 </resources>

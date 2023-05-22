@@ -184,7 +184,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Deze playlist staat in verbinding met Spotify"
+        android:text="@string/playlist_subtitle"
         android:textColor="#FFFF"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
